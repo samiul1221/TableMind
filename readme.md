@@ -1,4 +1,4 @@
-# 🍡 TableMind — ESP32 and Raspberry Pi based Voice Assistant
+# 🍡 Mochi — ESP32 Voice Assistant
 
 An always-listening, locally-run voice assistant built on an ESP32 + Raspberry Pi, featuring a hand-drawn animated face, smart home control, and natural conversation powered by on-device LLMs.
 
@@ -67,17 +67,17 @@ ESP32 (mic) ──UDP 5000──► Pi: udp_receive_loop
 
 ## 🛠️ Hardware
 
-| Component | Purpose |
-|---|---|
-| ESP32 (38-pin) | Audio streaming, speaker output, LED control, OLED face |
-| Raspberry Pi 4 / 5 | STT, LLM, TTS processing |
-| INMP441 I2S mic | Voice capture |
-| MAX98357A I2S speaker | TTS audio playback |
-| SSD1306 128×64 OLED | Animated Mochi face |
-| MAX7219 4×(8×8) matrix | HH:MM clock display |
-| WS2812B NeoPixel strip (48) | State-reactive LED ring + rectangle |
-| Smart lock ESP32-C3 | HTTP-controlled door lock |
-| Smart lamp ESP32 | HTTP-controlled RGBW lamp |
+| Component                   | Purpose                                                 |
+| --------------------------- | ------------------------------------------------------- |
+| ESP32 (38-pin)              | Audio streaming, speaker output, LED control, OLED face |
+| Raspberry Pi 4 / 5          | STT, LLM, TTS processing                                |
+| INMP441 I2S mic             | Voice capture                                           |
+| MAX98357A I2S speaker       | TTS audio playback                                      |
+| SSD1306 128×64 OLED         | Animated Mochi face                                     |
+| MAX7219 4×(8×8) matrix      | HH:MM clock display                                     |
+| WS2812B NeoPixel strip (48) | State-reactive LED ring + rectangle                     |
+| Smart lock ESP32-C3         | HTTP-controlled door lock                               |
+| Smart lamp ESP32            | HTTP-controlled RGBW lamp                               |
 
 ---
 
@@ -111,8 +111,8 @@ Edit `config.json` (or the constants at the top of `assistant.py`):
 ```json
 {
   "ESP32_IP": "192.168.0.2",
-  "LOCK_IP":  "192.168.0.9",
-  "LAMP_IP":  "192.168.0.7"
+  "LOCK_IP": "192.168.0.9",
+  "LAMP_IP": "192.168.0.7"
 }
 ```
 
@@ -143,12 +143,12 @@ python assistant.py
 
 ## 🔌 UDP Port Map
 
-| Port | Direction | Purpose |
-|---|---|---|
+| Port | Direction  | Purpose                            |
+| ---- | ---------- | ---------------------------------- |
 | 5000 | ESP32 → Pi | Raw mic audio (16-bit PCM, 16 kHz) |
-| 5001 | Pi → ESP32 | TTS audio (16-bit PCM, 16 kHz) |
-| 5002 | Pi → ESP32 | Text, state commands, IoT tags |
-| 5003 | ESP32 → Pi | Smart lock HTTP response relay |
+| 5001 | Pi → ESP32 | TTS audio (16-bit PCM, 16 kHz)     |
+| 5002 | Pi → ESP32 | Text, state commands, IoT tags     |
+| 5003 | ESP32 → Pi | Smart lock HTTP response relay     |
 
 ---
 
@@ -157,11 +157,13 @@ python assistant.py
 Mochi uses inline tags that the LLM embeds in its responses. Tags are stripped before TTS playback.
 
 ### State tags (Pi → ESP32)
+
 ```
 [STATE:SLEEPING]  [STATE:LISTENING]  [STATE:PROCESSING]  [STATE:SPEAKING]
 ```
 
 ### IoT command tags
+
 ```
 [CMD:LAMP:ON]  [CMD:LAMP:OFF]
 [CMD:LAMP:BRIGHTNESS:N]     N = 0–255
@@ -171,6 +173,7 @@ Mochi uses inline tags that the LLM embeds in its responses. Tags are stripped b
 ```
 
 ### Face / animation tags
+
 ```
 [FACE:HAPPY]  [FACE:LAUGH]  [FACE:CRY]  [FACE:LOVE]  [FACE:WINK]
 [FACE:UWU]    [FACE:SMIRK]  [FACE:DIZZY] [FACE:HEAD_PAT] [FACE:TONGUE]
@@ -181,11 +184,11 @@ Mochi uses inline tags that the LLM embeds in its responses. Tags are stripped b
 
 ## 🎛️ Touch Controls
 
-| Sensor | Short Tap | Long Press |
-|---|---|---|
-| Touch 1 (GPIO 36) | Head pat reaction | Toggle relaxation mode |
-| Touch 2 (GPIO 39) | Skip / abort TTS | Toggle mic mute |
-| Touch 3 (GPIO 34) | Toggle 12/24-hr clock | Cycle LED brightness |
+| Sensor            | Short Tap             | Long Press             |
+| ----------------- | --------------------- | ---------------------- |
+| Touch 1 (GPIO 36) | Head pat reaction     | Toggle relaxation mode |
+| Touch 2 (GPIO 39) | Skip / abort TTS      | Toggle mic mute        |
+| Touch 3 (GPIO 34) | Toggle 12/24-hr clock | Cycle LED brightness   |
 
 ---
 
@@ -208,6 +211,12 @@ LLM_MODEL = "qwen2.5:1.5b"         # fast, lightweight
 ```
 
 Any model available via `ollama list` works. Adjust `LLM_CONTEXT_WINDOW` accordingly.
+
+---
+
+## 🙏 Credits
+
+The Mochi animated face sequences used in this project were created by [huykhoong](https://github.com/huykhoong).
 
 ---
 

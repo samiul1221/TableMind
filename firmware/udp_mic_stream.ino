@@ -21,7 +21,7 @@
 #include <math.h>
 #include <time.h>
 
-#include "../mochi_all_emotions/all_frames.h"  // 772 bitmap animation frames
+#include "all_frames.h"  // 772 bitmap animation frames
 
 // ─── NETWORK CONFIG ───────────────────────────────────────
 #define WIFI_SSID "YOUR_WIFI_SSID"
