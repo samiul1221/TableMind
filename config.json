@@ -1,0 +1,22 @@
+{
+  "shikimori": {
+    "client_id": "",
+    "client_secret": "",
+    "access_token": "",
+    "refresh_token": "",
+    "user_id": 0,
+    "app_name": "MochiAssistant"
+  },
+  "anilist": {
+    "client_id": "YOUR_ANILIST_CLIENT_ID",
+    "client_secret": "YOUR_ANILIST_CLIENT_SECRET",
+    "access_token": "YOUR_ANILIST_ACCESS_TOKEN",
+    "user_id": 0
+  },
+  "animechan": {
+    "api_key": ""
+  },
+  "openaq": {
+    "api_key": "YOUR_OPENAQ_API_KEY"
+  }
+}
